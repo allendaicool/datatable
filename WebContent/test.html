@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>DataTables example - </title>
+	
+	
+	<link rel="stylesheet" type="text/css" href="css/dataTables.editor.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/shCore.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<link rel="stylesheet" type="text/css" href="css/dataTables.tableTools.css">
+	<link href="css/jquery-ui.min.css" rel="stylesheet">
+
+	<style type="text/css" class="init">
+
+	</style>
+
+
+
+	<script type="text/javascript" language="javascript"  src="js/jquery-1.11.1.min.js"></script>
+	<!-- <script type="text/javascript" language="javascript" src="js/jquery.min.js"></script> -->
+	<script type="text/javascript" language="javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="js/dataTables.tableTools.js"></script>
+
+	<!--<script type="text/javascript" language="javascript" src="js/jquery.js"></script>-->
+	
+	<script type="text/javascript" language="javascript" src="js/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="js/demo.js"></script>
+	<script src="js/dataTables.editor.min.js"></script>
+	
+	<script type="text/javascript" language="javascript" class="init">
+
+	
+	
+	
+	
+	
+	/* var json = {
+			  BrowserStats : [
+			    { Star_Rating: "1", Device: "ST26i", Review_Submit_Date: "2014-11-01T00:00:20Z", Review_Title:"#", Review_Text: "Why I can't sign in or create an account?", Labels:"Login" },
+			    { Star_Rating: "2", Device: "ST26i", Review_Submit_Date: "2014-11-01T00:00:20Z", Review_Title:"#", Review_Text: "Why I can't sign in or create an account?", Labels:"download Issue" }
+			  ]
+			};
+
+	
+	var data  = new Array() ;
+
+	 for ( var i in json.BrowserStats)
+	    {
+	              var temp = new Array()  ;
+	              temp.push(json.BrowserStats[i].Star_Rating);
+	              temp.push(json.BrowserStats[i].Device);
+	              temp.push(json.BrowserStats[i].Review_Submit_Date);
+	              temp.push(json.BrowserStats[i].Review_Title);
+	              temp.push(json.BrowserStats[i].Review_Text);
+	              temp.push(json.BrowserStats[i].Labels);
+	              data.push(temp);
+	     } */
+			
+			
+	$(document).ready(function() {
+		$('#example').DataTable( {
+			dom: 'T<"clear">lfrtip',
+			"ajax": {
+				"url": "/dataTableda",
+				"type": "GET"
+			}
+			"columns":[
+		                { "data": "Star_Rating" },
+		                { "data": "Device" },
+		                { "data": "Review_Submit_Date" },
+		                { "data": "Review_Title" },
+		                { "data": "Review_Text" },
+		                { "data": "Label" },            
+		              ],
+				
+			tableTools: {
+				"sSwfPath": "swf/copy_csv_xls_pdf.swf",
+				"sRowSelect": "os",
+				"aButtons": [
+				                "copy",{
+				                "sExtends":    "collection",
+			                    "sButtonText": "export table",
+			                    "aButtons":    [ "csv", "xls", "pdf" ]
+				      } 
+				    ]
+				}
+			}
+		 );
+	} );
+
+	</script>
+
+</head>
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>Review DataTables example</h1>
+
+
+
+
+
+
+    <form action="demo_form.asp" id="myform">
+			Date From : <input id="datepicker-1" type="text">
+
+    		Date To : <input id="datepicker-2" type="text">
+    	 <input type="submit" value="Submit" id="checkEmpty">
+	</form>
+
+
+
+
+
+
+
+
+
+			<table id="example" class="display" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>Star Rating</th>
+						<th>Device</th>
+
+						<th>Review Submit Date</th>
+						<th>Review Title</th>
+						<th>Review Text</th>
+						<th>Labels</th>
+					</tr>
+				</thead>
+
+				<tfoot>
+					<tr>
+						<th>Star Rating</th>
+						<th>Device</th>
+
+						<th>Review Submit Date</th>
+						<th>Review Title</th>
+						<th>Review Text</th>
+						<th>Labels </th>
+					</tr>
+				</tfoot>
+<!-- 
+				<tbody>
+				
+					<tr>
+						<td>1</td>
+						<td>ST26i</td>
+						<td>2014-11-01T00:00:20Z</td>
+						<td>＃</td>
+						<td>Why I can't sign in or create an account?</td>
+						<td>Login</td>
+					</tr>
+
+					<tr>
+						<td>1</td>
+						<td>NXM865FD</td>
+						<td>2014-11-01T00:09:06Z</td>
+						<td>＃</td>
+						<td>I have bought tons of books through Amazon over the years and then for you guys to not let us download those I thought was pretty bad. Anyway I guess I am just not the right customer for this one!</td>
+						<td>Download Issue</td>
+					</tr> 
+				</tbody>
+				-->
+			</table>
+
+		
+		</section>
+	</div>
+
+</body>
+</html>
+
+ <script type="text/javascript" language="javascript" src="js/datePicker.js"></script>

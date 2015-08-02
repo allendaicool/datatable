@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>Editor example - Envelope display with in table controls</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/dataTables.editor.css">
+	<link rel="stylesheet" type="text/css" href="css/shCore.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/dataTables.editor.js"></script>
+	<script type="text/javascript" language="javascript" src="js/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="js/demo.js"></script>
+	<script type="text/javascript" language="javascript" src="js/editor-demo.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+
+
+
+// var editor; // use a global for the submit and return data rendering in the examples
+
+ $(document).ready(function() {
+
+	var jsonObject = {"rating":"1"};
+	var tempValue = JSON.stringify(jsonObject);
+	alert("the tempValue is " + tempValue);
+	$('#example').DataTable( {
+		ajax: {
+			"url": "dataTable",
+			"dataType": 'json',
+			"type": "POST",
+			"data": function ( d ) {
+                d.rating = "1";
+                // d.custom = $('#myInput').val();
+                // etc
+            }
+				//JSON.stringify(jsonObject)
+				/* {
+				    "rating" : 1
+				} */
+				
+			
+	},
+		columns: [
+			{ data: "Star_Rating" },
+			{ data: "Device" },
+			{ data: "Review_Submit_Date" },
+			{ data: "Review_Title" },
+			{ data: "Review_Text" },
+			{
+			  data: "Label"
+			},
+			{
+				data: null, 
+				className: "center",
+				defaultContent: '<a href="" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a>'
+			}
+		]
+	} );
+} );
+
+
+
+	</script>
+</head>
+
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>Editor example <span>Envelope display with in table controls</span></h1>
+
+
+			<table id="example" class="display" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>Star_Rating</th>
+						<th>Device</th>
+						<th>Review_Submit_Date</th>
+						<th>Review_Title</th>
+						<th>Review_Text</th>
+						<th>Label</th>
+						<th>Edit / Delete</th>
+					</tr>
+				</thead>
+
+				<tfoot>
+					<tr>
+						<th>Star_Rating</th>
+						<th>Device</th>
+						<th>Review_Submit_Date</th>
+						<th>Review_Title</th>
+						<th>Review_Text</th>
+						<th>Label</th>
+						<th>Edit / Delete</th>
+					</tr>
+				</tfoot>
+			</table>	
+		</section>
+	</div>
+
+</body>
+</html>
