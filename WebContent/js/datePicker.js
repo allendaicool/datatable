@@ -1,37 +1,25 @@
-$("#datepicker-1").datepicker({
-				dateFormat: "mm-dd-yy",
-				changeMonth: true,
-				onSelect: function(date) {
-					
-
-					var selectedDate = new Date(date);
-					var msecsInADay = 86400000;
-					var endDate = new Date(selectedDate.getTime() + msecsInADay );
-					alert("the end date is " + endDate);
-					$("#datepicker-2").datepicker( "option", "minDate", endDate );
-        			$("#datepicker-2").datepicker( "option", "maxDate", '+2y' );
-				
+$("#datepicker-2").datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear:true,
+			onSelect: function(date) {
 			}
-		});
-
-		 $("#datepicker-2").datepicker({
-				dateFormat: "mm-dd-yy",
-				changeMonth: true,
-				changeYear:true,
-				onSelect: function(dateText, inst) {
-				}
-			});
+	 });
 
 
-		  $('#myform').submit(function() {
+   $("#datepicker-1").datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear:true,
+			onSelect: function(date) {
+				var msecsInADay = 86400000;
+				var dateText = $(this).datepicker('getDate');
+				var EndDateMillis = dateText.getTime() + msecsInADay;
+				var endDate = new Date(EndDateMillis);
+				$("#datepicker-2").datepicker( "option", "minDate", endDate );
+    			$("#datepicker-2").datepicker( "option", "maxDate", '+2y' );
+			
+		}
+	});
 
-		 		var dateFrom = $.trim($('#datepicker-1').val());
-		 		
-		 		var dateTo = $.trim($('#datepicker-2').val());
-				if (!dateFrom || !dateTo) 
-		 		{
-		 			alert("the date from must be filled");
-		 			return false;
-		 		}
-		 		return true;
-		 });
+      

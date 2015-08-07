@@ -8,16 +8,13 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-    
   </welcome-file-list>
-  
   <servlet>
     <description></description>
     <display-name>dataTable</display-name>
     <servlet-name>dataTable</servlet-name>
     <servlet-class>dao.dataTable</servlet-class>
   </servlet>
-  
   <servlet-mapping>
     <servlet-name>dataTable</servlet-name>
     <url-pattern>/dataTable</url-pattern>
