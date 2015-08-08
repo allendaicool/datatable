@@ -1,0 +1,218 @@
+<html>
+  <head>
+    <title>jQCloud Example</title>
+    <link rel="stylesheet" type="text/css" href="../src/jqcloud.css" />
+    <style type="text/css">
+input {
+  display: block;
+}
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../src/jQCloud.js"></script>
+    <script type="text/javascript">
+
+      
+      var data_January = '{"hands":1,"functions":2,"use":33,"reader":19,"android":27,"update":34,"screen":28,"turn":8,"ios":3,"good":54,"setting":5,"wish":12,"properly":4,"download":42,"whats":7,"fix":37,"let":16,"kindle":82,"takes":14,"upgrade":6,"like":58,"need":15,"devices":9,"bought":13,"want":21,"reading":62,"wont":41,"stars":23,"great":40,"sync":35,"version":11,"way":18,"amazon":29,"better":20,"phone":17,"time":24,"dont":32,"open":22,"authors":10}';
+
+      var data_Feb = '{"love":48,"cancel":1,"half":4,"functions":2,"use":29,"reader":12,"update":26,"screen":14,"turn":6,"good":51,"slower":3,"wish":11,"download":22,"samsung":9,"fix":23,"kindle":73,"ok":18,"keeps":16,"new":15,"read":69,"like":56,"devices":10,"want":17,"reading":42,"google":7,"list":8,"great":43,"click":5,"amazon":21,"brightness":20,"phone":33,"try":13,"time":34,"page":32,"device":24,"dont":30}';
+
+      var data_March = '{"vague":1,"works":20,"functions":2,"use":42,"android":17,"update":45,"screen":26,"used":14,"turn":13,"good":51,"setting":11,"properly":3,"tablet":28,"download":44,"pages":16,"fix":39,"loved":8,"kindle":107,"free":22,"add":10,"new":12,"read":55,"like":61,"devices":15,"excellent":4,"unlimited":6,"want":19,"reading":52,"great":38,"click":5,"amazon":21,"phone":40,"left":9,"information":7,"time":33,"page":32}';
+
+      var data_April = '{"love":53,"cancel":2,"chapter":11,"german":1,"works":25,"log":16,"year":5,"use":32,"buy":27,"update":88,"screen":42,"used":22,"turn":10,"good":37,"doesnt":23,"setting":6,"times":15,"kindle":102,"close":7,"definitions":3,"latest":12,"new":45,"website":9,"read":72,"like":59,"need":21,"devices":4,"want":33,"google":8,"store":55,"great":30,"version":17,"click":14,"way":18,"amazon":48,"better":13,"phone":31,"left":19,"able":20,"try":24,"time":51,"page":35,"open":50}';
+
+      var data_May = '{"cancel":1,"half":6,"year":2,"use":40,"reader":12,"update":52,"screen":24,"wouldnt":4,"good":26,"got":9,"doesnt":14,"wish":10,"properly":3,"download":47,"tried":16,"fix":48,"kindle":109,"add":15,"read":89,"like":54,"devices":8,"want":25,"reading":50,"google":5,"stars":18,"great":35,"version":19,"click":7,"way":20,"amazon":44,"better":11,"phone":42,"time":30,"page":17,"updated":13,"dont":33}';
+
+      // '{"cancel":3,"half":8,"unavailable":1,"use":134,"buy":75,"screen":111,"used":62,"crashes":44,"good":193,"doesnt":74,"features":32,"download":153,"worked":19,"pages":42,"fix":147,"loved":29,"pick":5,"audiobooks":2,"quite":13,"let":43,"text":55,"kindle":367,"keeps":58,"new":86,"settings":22,"using":63,"making":17,"read":283,"having":51,"like":237,"need":56,"going":36,"work":84,"want":91,"wont":98,"sync":71,"downloaded":41,"click":27,"amazon":123,"size":9,"phone":125,"left":38,"supposed":7,"try":60,"fixed":28,"page":136,"device":73,"dont":142,"annoying":47,"option":45,"problems":39,"freezes":31,"thats":18,"love":205,"access":35,"memory":10,"log":21,"save":15,"update":198,"turn":37,"battery":40,"long":34,"search":49,"times":48,"load":33,"does":81,"hard":25,"make":50,"says":24,"connect":4,"think":23,"address":6,"recently":20,"reading":203,"stars":64,"instead":26,"great":161,"really":99,"way":67,"better":54,"brightness":65,"readers":16,"thank":11,"information":12,"time":140,"thing":30,"open":124,"taking":14}';
+   
+      //var parse = JSON.parse(data_January);
+
+      //alert(parse.length);
+      /*!
+       * Create an array of word objects, each representing a word in the cloud
+       */
+       var word_array_temp_Jan = [];
+
+       JSON.parse(data_January, function(k, v) {
+           if( k !== ''){
+               var tempObject = {text:k,weight:v};
+               word_array_temp_Jan.push(tempObject);
+             }
+      }); 
+
+       var word_array_temp_Feb = [];
+       JSON.parse(data_Feb, function(k, v) {
+           if( k !== ''){
+               var tempObject = {text:k,weight:v};
+               word_array_temp_Feb.push(tempObject);
+             }
+      }); 
+
+        var word_array_temp_March = [];
+       JSON.parse(data_March, function(k, v) {
+           if( k !== ''){
+               var tempObject = {text:k,weight:v};
+               word_array_temp_March.push(tempObject);
+             }
+      }); 
+
+      var word_array_temp_April = [];
+       JSON.parse(data_April, function(k, v) {
+           if( k !== ''){
+               var tempObject = {text:k,weight:v};
+               word_array_temp_April.push(tempObject);
+             }
+      }); 
+
+       var word_array_temp_May = [];
+       JSON.parse(data_May, function(k, v) {
+           if( k !== ''){
+               var tempObject = {text:k,weight:v};
+               word_array_temp_May.push(tempObject);
+             }
+      }); 
+                      // { p: 10 }
+
+       // $.each(parse,function(k,v){
+       //     alert(v);
+       //    var tempObject = {text:k,weight:v};
+       //    word_array_temp.append(tempObject);
+       // });
+       // for ( var  i = 0 ; i < parse.length ; i++){
+      //     var object = {text:parse[i].}
+      // }
+     
+      var word_array = [
+         {text: "Lorem", weight: 13},
+          {text: "Ipsum", weight: 9, link: "http://jquery.com/"},
+          {text: "Dolor", weight: 6, html: {title: "I can haz any html attribute"}},
+          {text: "Sit", weight: 7},
+          {text: "Amet", weight: 5}
+          // ...as many words as you want
+      ];
+
+      $(function() {
+        // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+        $("#example-1").jQCloud(word_array);
+
+        $("#example-2").jQCloud(word_array_temp_Feb);
+
+        $("#example-3").jQCloud(word_array_temp_March);
+
+        $("#example-4").jQCloud(word_array_temp_April);
+
+        $("#example-5").jQCloud(word_array_temp_May);
+
+
+
+        var json = '{"result":true,"count":1}',
+        obj = JSON.parse(json);
+
+        //alert(obj.count);
+
+        //get button reference
+var myBtn = document.getElementById('myBtn');
+
+//add click function
+myBtn.addEventListener('click', function(event) {
+  addField();
+});
+
+//it's more efficient to get the form reference outside of the function, rather than getting it each time
+var form = document.getElementById('myForm');
+
+function addField() {
+  var input = document.createElement('input');
+  form.insertBefore(input, myBtn);
+  //form.appendChild(input);
+}
+
+var filter_out_aray = [];
+
+$("#filter").click(function(){
+   $("#myForm :input").each(function(){
+    var input = $(this).val(); // This is the jquery object of the input, do what you will
+    //console.log(input);
+    filter_out_aray.push(input);
+});
+
+   var change = 0;
+   for ( var i = 0 ; i < filter_out_aray.length; i++)
+   {
+       var search_term = filter_out_aray[i];
+       for ( var j = 0; j < word_array.length; j++)
+       {
+
+           if ( search_term.toUpperCase() === word_array[j].text.toUpperCase())
+           {
+             console.log(word_array[j].text.toUpperCase());
+            console.log(search_term.toUpperCase());
+                word_array.splice(j,1);
+                change = 1;
+           }
+       }
+   }
+   console.log(word_array);
+  if (change == 1){
+      $("#example-1").jQCloud('update',word_array);
+   }
+ $("#myForm :input").each(function(){
+    var input = $(this).val(''); // This is the jquery object of the input, do what you will
+    //console.log(input);
+});
+
+});
+    
+
+
+});
+    </script>
+  </head>
+  <body>
+
+<form id="myForm">
+  <input type="text">
+    <button type="button" id="myBtn">ADD</button>
+
+</form>
+
+  <button id="filter" > filter</button>
+
+
+
+
+     <style>
+      .container {
+       width: 500px;
+       height: 400px;
+       border: 1px solid #ccc;
+       margin: 20px;
+     }
+     .outContainer {
+      width: 600px;
+       height: 650px;
+       border: 1px solid #ccc;
+       margin: 20px;
+     }
+    </style>
+    <!-- You should explicitly specify the dimensions of the container element -->
+      <p> January</p>
+    <div id="example-1" class="container"></div>
+    
+     <p> Feburary</p>
+    <div id="example-2" class="container"></div>
+
+     <p> March</p>
+    <div id="example-3" class="container"></div>
+
+     <p> April</p>
+    <div id="example-4" class="container"></div>
+
+    <p> May</p>
+    <div id="example-5" class="container"></div>
+    
+    
+    
+
+
+  </body>
+</html>

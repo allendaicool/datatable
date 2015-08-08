@@ -145,18 +145,14 @@ $(document).ready(function() {
 			return false;
 		}
 
-		passToServer.rating = $("#selectedRating").val();
+		passToServer.ratingFrom = $("#selectedRatingFrom").val();
 		passToServer.dateFrom = $("#datepicker-1").val();
 		passToServer.dateTo = $("#datepicker-2").val();
 		passToServer.NonEmpty = $("#selectedReviewtext").val();
+		passToServer.ratingTo=  $("#selectedRatingTo").val();
 		alert("rating is" +  passToServer.rating);
 		alert("rating NonEmpty  " +  passToServer.NonEmpty);
-
-
-
-
 		table.ajax.reload();
-
 		return true;
 	});
 
