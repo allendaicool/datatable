@@ -110,32 +110,64 @@ input {
         //alert(obj.count);
 
         //get button reference
-var myBtn = document.getElementById('myBtn');
+        var myBtn = document.getElementById('myBtn');
 
 //add click function
-myBtn.addEventListener('click', function(event) {
-  addField();
-});
+        myBtn.addEventListener('click', function(event) {
+              addField();
+        });
+
+        var deleteBtn = document.getElementById('delete');
+
+        deleteBtn.addEventListener('click', function(event) {
+            deleteField();
+        });
 
 //it's more efficient to get the form reference outside of the function, rather than getting it each time
 var form = document.getElementById('myForm');
 
-function addField() {
+var idCount = 0;
+
+var inputForm ="inputId";
+
+var formInputIdArray =[];
+
+function addField()
+{
   var input = document.createElement('input');
+  var idAssigned = inputForm + idCount;
+  idCount ++;
+  formInputIdArray.push(idAssigned);
+  input.setAttribute("id", idAssigned);
   form.insertBefore(input, myBtn);
-  //form.appendChild(input);
 }
+
+function deleteField()
+{
+  if (formInputIdArray.length > 0)
+  {
+     var lastInputField = formInputIdArray[formInputIdArray.length-1];
+
+     document.getElementById(lastInputField).remove();
+     
+    formInputIdArray.splice(formInputIdArray.length-1,1);
+  }
+}
+
+
 
 var filter_out_aray = [];
 
 $("#filter").click(function(){
+   
    $("#myForm :input").each(function(){
     var input = $(this).val(); // This is the jquery object of the input, do what you will
     //console.log(input);
     filter_out_aray.push(input);
-});
+   });
 
    var change = 0;
+   
    for ( var i = 0 ; i < filter_out_aray.length; i++)
    {
        var search_term = filter_out_aray[i];
@@ -145,20 +177,23 @@ $("#filter").click(function(){
            if ( search_term.toUpperCase() === word_array[j].text.toUpperCase())
            {
              console.log(word_array[j].text.toUpperCase());
-            console.log(search_term.toUpperCase());
-                word_array.splice(j,1);
-                change = 1;
+             console.log(search_term.toUpperCase());
+              word_array.splice(j,1);
+              change = 1;
            }
        }
    }
-   console.log(word_array);
-  if (change == 1){
+  console.log(word_array);
+  
+  if (change == 1)
+  {
       $("#example-1").jQCloud('update',word_array);
-   }
- $("#myForm :input").each(function(){
+  }
+  
+  $("#myForm :input").each(function(){
     var input = $(this).val(''); // This is the jquery object of the input, do what you will
     //console.log(input);
-});
+  });
 
 });
     
@@ -175,12 +210,19 @@ $("#filter").click(function(){
 
 </form>
 
+
   <button id="filter" > filter</button>
+  <button id="delete" > deleteInput </button>
+  
 
-
+   
 
 
      <style>
+
+    
+
+
       .container {
        width: 500px;
        height: 400px;

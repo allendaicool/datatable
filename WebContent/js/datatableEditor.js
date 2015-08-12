@@ -1,38 +1,4 @@
-/*!
- * File:        dataTables.editor.min.js
- * Version:     1.4.2
- * Author:      SpryMedia (www.sprymedia.co.uk)
- * Info:        http://editor.datatables.net
- * 
- * Copyright 2012-2015 SpryMedia, all rights reserved.
- * License: DataTables Editor - http://editor.datatables.net/license
- */
-(function(){
 
-// Please note that this message is for information only, it does not effect the
-// running of the Editor script below, which will stop executing after the
-// expiry date. For documentation, purchasing options and more information about
-// Editor, please see https://editor.datatables.net .
-var remaining = Math.ceil(
-	(new Date( 1439596800 * 1000 ).getTime() - new Date().getTime()) / (1000*60*60*24)
-);
-
-if ( remaining <= 0 ) {
-	alert(
-		'Thank you for trying DataTables Editor\n\n'+
-		'Your trial has now expired. To purchase a license '+
-		'for Editor, please see https://editor.datatables.net/purchase'
-	);
-	throw 'Editor - Trial expired';
-}
-else if ( remaining <= 7 ) {
-	console.log(
-		'DataTables Editor trial info - '+remaining+
-		' day'+(remaining===1 ? '' : 's')+' remaining'
-	);
-}
-
-})();
 var I8x={'e1h':(function(b1h){return (function(Q1h,A1h){return (function(I1h){return {F1h:I1h}
 ;}
 )(function(Z1h){var R1h,C1h=0;for(var n1h=Q1h;C1h<Z1h["length"];C1h++){var g1h=A1h(Z1h,C1h);R1h=C1h===0?g1h:R1h^g1h;}

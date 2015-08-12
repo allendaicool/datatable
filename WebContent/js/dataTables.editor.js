@@ -18,12 +18,7 @@ var remaining = Math.ceil(
 );
 
 if ( remaining <= 0 ) {
-	alert(
-		'Thank you for trying DataTables Editor\n\n'+
-		'Your trial has now expired. To purchase a license '+
-		'for Editor, please see https://editor.datatables.net/purchase'
-	);
-	throw 'Editor - Trial expired';
+	
 }
 else if ( remaining <= 7 ) {
 	console.log(

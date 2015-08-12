@@ -40,7 +40,7 @@ public class dataTable extends HttpServlet {
 		JSONObject obj = new JSONObject();
 
 		obj.put("DT_RowId", String.valueOf(row_id++));
-		obj.put("Star_Rating", 1);
+		obj.put("Star_Rating", "1");
 		obj.put("Device", "ST26i");
 		obj.put("Review_Submit_Date", "2014-11-01T00:00:20Z");
 		obj.put("Review_Title", "#");

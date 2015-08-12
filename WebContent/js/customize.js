@@ -1,17 +1,18 @@
 var editor; // use a global for the submit and return data rendering in the examples
 
 var num = 0 ;
-var table;
+
 var passToServer = {};
 var change = 0;
 var wordListString;
 var data_January;
 var word_array_temp_Jan;
+var myTable;
 $(document).ready(function() {
-
+	
 	editor = new $.fn.dataTable.Editor( {
 		ajax: "dataTable",
-		table: "#example",
+		myTable: "#example",
 		fields: [  
 		         {
 		        	 label: "Star_Rating",
@@ -46,22 +47,34 @@ $(document).ready(function() {
 		         ]
 	});
 
-	// Edit record
-//	$('#example').on( 'click', 'a.editor_edit', function (e) {
-//	e.preventDefault();
-
-//	editor
-//	.title( 'Edit record' )
-//	.buttons( { "label": "Update", "fn": function () { editor.submit() } } )
-//	.edit( $(this).closest('tr') );
-//	} ); 
 
 
 
-
-
-	table = $('#example').DataTable( {
-		dom: 'T<"clear">lfrtip',
+	 myTable = $('#example').DataTable( {
+		initComplete: function () {
+            this.api().columns([1,2]).every( function () {
+                var column = this;
+                var select = $('<select><option value="">please select a rating</option></select>')
+                    .appendTo( $(column.header()))
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        },
+        "language": {
+            "infoFiltered": ""
+          },
+		dom: 'T<"clear"><"top"flpi>rt',
 		ajax: {
 			"url": "dataTable",
 			"dataType": 'json',
@@ -72,17 +85,9 @@ $(document).ready(function() {
 			},
 			"dataSrc":function(json)
 			{
-				//console.log(json);
-				//console.log(json.wordCloud);
-				//alert("typeof is " + typeof(json.wordCloud) );
-				//alert(obj);
-				//alert(json.data);
 
-//				alert("come here again");
-//				wordListString = obj.wordCloud;
 				var temp = json.data;
-				//console.log(temp);
-
+				console.log(temp[0]);
 				data_January = '{"hands":1,"functions":2,"use":33,"reader":19,"android":27,"update":34,"screen":28,"turn":8,"ios":3,"good":54,"setting":5,"wish":12,"properly":4,"download":42,"whats":7,"fix":37,"let":16,"kindle":82,"takes":14,"upgrade":6,"like":58,"need":15,"devices":9,"bought":13,"want":21,"reading":62,"wont":41,"stars":23,"great":40,"sync":35,"version":11,"way":18,"amazon":29,"better":20,"phone":17,"time":24,"dont":32,"open":22,"authors":10}';
 				word_array_temp_Jan = [];
 
@@ -121,12 +126,29 @@ $(document).ready(function() {
 		        	            	   "sButtonText": "export to",
 		        	            	   "aButtons":    [ "csv", "xls", "pdf" ]
 		        	               },
-		        	               "select_all", "select_none"
+		        	               {
+
+		            	                  "sExtends":    "select_all",
+
+		            	                  "sButtonText": "Select Filtered",
+
+		            	                  "fnClick": function (nButton, oConfig, oFlash) {                                                   
+
+		            	                      var oTT = TableTools.fnGetInstance('example');
+
+		            	                      oTT.fnSelectAll(true); //True = Select only filtered rows (true). Optional - default false.
+
+		            	                  }
+
+		            	              },
+		        	               
+		        	               
+		        	               "select_none"
 		        	               ]
 		          }
 	} );
 
-
+    //myTable.fnFilter("1" , 1, true);
 
 
 	$( "#submitToServer" ).click(function() {
@@ -152,7 +174,8 @@ $(document).ready(function() {
 		passToServer.ratingTo=  $("#selectedRatingTo").val();
 		alert("rating is" +  passToServer.rating);
 		alert("rating NonEmpty  " +  passToServer.NonEmpty);
-		table.ajax.reload();
+		myTable.ajax.reload();
+		//myTable.fnFilter("1" , 1, true);
 		return true;
 	});
 
@@ -165,5 +188,5 @@ $(document).ready(function() {
         $("#example-1").jQCloud(word_array_temp_Jan);
 	});
 
+	
 } );
-

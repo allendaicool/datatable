@@ -16,39 +16,34 @@
 <link rel="stylesheet" type="text/css" href="css/demo.css"> -->
 <link rel="stylesheet" type="text/css"
 	href="css/dataTables.tableTools.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" type="text/css" href="css/firstColumn.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
+<!-- <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.css"> -->
+
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.css">
-<style type="text/css" class="init"></style>
-
-
-
-<script type="text/javascript" language="javascript"
-	src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" language="javascript"
-	src="js/jquery-ui.min.js"></script>
+	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <script type="text/javascript" language="javascript"
-	src="js/jquery.dataTables.min.js"></script>
-
+	src="js/jquery.dataTables.js"></script>
+	
 <script type="text/javascript" language="javascript"
 	src="js/dataTables.tableTools.js"></script>
+<!-- <script type="text/javascript" language="javascript"
+	src="js/dataTables.editor.js"></script> -->
+
 <script type="text/javascript" language="javascript"
-	src="js/dataTables.editor.js"></script>
+	src="js/datatableEditor.js"></script>
 <!-- <script type="text/javascript" language="javascript" src="js/shCore.js"></script>
 <script type="text/javascript" language="javascript" src="js/demo.js"></script> -->
 <script type="text/javascript"
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-
-
-
-
 
 <!--  <script type="text/javascript" language="javascript"
 	src="js/editor-demo.js"></script> -->
@@ -61,7 +56,8 @@
 	
 </script>
 
-
+<script type="text/javascript" language="javascript"
+	src="js/datePicker.js" defer></script>
 <style>
 .icontainer {
 	position: relative;
@@ -82,7 +78,23 @@
 
 			<!-- <button type="button" id="clickMe">Click Me!</button> -->
 
-      
+			<div class="container">
+
+				<div class="btn-group" role="group" aria-label="Ratings"
+					id="yihongdai">
+					<input type="button" class="btn btn-default" value="1"
+						, id="rating1" /> <input type="button" class="btn btn-default"
+						value="2" , id="rating2" /> <input type="button"
+						class="btn btn-default" value="3" , id="rating3" /> <input
+						type="button" class="btn btn-default" value="4" , id="rating4" />
+					<input type="button" class="btn btn-default" value="5"
+						, id="rating5" /> 
+						<!-- <input type="button" class="btn btn-default"
+						value="All" , id="ratingAll" /> -->
+
+				</div>
+			</div>
+
 				<table align="left" id="myform">
 					<tr>
 						<td>
@@ -98,7 +110,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Rating From : &nbsp <select name="ratingFromList" id="selectedRatingFrom" >
+						<td>Rating From : &nbsp <select name="ratingFromList"
+							id="selectedRatingFrom">
 								<option disabled selected>-- select a rating --</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -107,7 +120,8 @@
 								<option value="5">5</option>
 						</select>
 						</td>
-						<td>Rating To : &nbsp <select name="ratingToList" id="selectedRatingTo" >
+						<td>Rating To : &nbsp <select name="ratingToList"
+							id="selectedRatingTo">
 								<option disabled selected>-- select a rating --</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -121,7 +135,8 @@
 					<tr>
 
 
-						<td>Review Text <select id="selectedReviewtext" name="reviewText">
+						<td>Review Text <select id="selectedReviewtext"
+							name="reviewText">
 								<option disabled selected>-- select a rating --</option>
 								<option value="Non-empty">non-empty</option>
 								<option value="dontCare">don't Care</option>
@@ -137,40 +152,39 @@
 				</table>
 
 
-			<table id="example" class="display" cellspacing="0" width="100%">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Star_Rating</th>
-						<th>Device</th>
-						<th>Review_Submit_Date</th>
-						<th>Review_Title</th>
-						<th>Review_Text</th>
-						<!-- 						<th>App Version Code</th>
+				<table id="example" class="display" cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th></th>
+							<th class="dai1">Star_Rating</th>
+							<th>Device</th>
+							<th>Review_Submit_Date</th>
+							<th>Review_Title</th>
+							<th>Review_Text</th>
+							<!-- 						<th>App Version Code</th>
  -->
-						<th>Label</th>
-						<!-- 						<th>Edit / Delete</th>
+							<th>Label</th>
+							<!-- 						<th>Edit / Delete</th>
  -->
-					</tr>
-				</thead>
+						</tr>
+					</thead>
 
-				<tfoot>
-					<tr>
-						<th></th>
-						<th>Star_Rating</th>
-						<th>Device</th>
-						<th>Review_Submit_Date</th>
-						<th>Review_Title</th>
-						<th>Review_Text</th>
-						<!-- 						<th>App Version Code</th>
+					<tfoot>
+						<tr>
+							<th></th>
+							<th class="dai1">Star_Rating</th>
+							<th>Device</th>
+							<th>Review_Submit_Date</th>
+							<th>Review_Title</th>
+							<th>Review_Text</th>
+							<!-- 						<th>App Version Code</th>
  -->
-						<th>Label</th>
-						<!--  						<th>Edit / Delete</th>
+							<th>Label</th>
+							<!--  						<th>Edit / Delete</th>
  -->
-					</tr>
-				</tfoot>
-			</table>
-
+						</tr>
+					</tfoot>
+				</table>
 		</section>
 	</div>
 
@@ -179,11 +193,18 @@
 
 	<p>January</p>
 	<div id="example-1" class="icontainer"></div>
+
+
+	<canvas id="myChart" width="400" height="400"></canvas>
+
 </body>
-</html>
 
 <script type="text/javascript" language="javascript"
-	src="js/datePicker.js"></script>
+	src="js/buttonSelector.js">
+</script>
+</html>
+
+
 
 
 
